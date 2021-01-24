@@ -6,6 +6,7 @@ filetype plugin indent on   " 启用根据文件类型自动缩进
 set expandtab               " 将制表符Tab展开为空格，这对Python尤其有用
 set tabstop=4               " 输入Tab时转化为4空格；打开文件时Tab显示为4空格
 set backspace=2             " 在多数终端上修正退格键Backspace的行为
+set cursorline              " 高亮光标所在行
 
 set autoindent              " 开始新行时处理缩进
 set shiftwidth=4            " 用于自动缩进的空格数
@@ -40,6 +41,8 @@ Plug 'scrooloose/nerdtree'          " 提供类似于IDE的文件目录视图
 Plug 'tpope/vim-unimpaired'         " 将一些常用Vim命令映射为简单的快捷键
 Plug 'vim-airline/vim-airline'      " 花哨的状态栏工具
 Plug 'morhetz/gruvbox'              " 一款广受好评的配色方案
+" Plug 'Valloric/YouCompleteMe'自动补全插件YouCompleteMe不建议通过包管理器安装，错误频出；apt包管理器居然支持，Nice!
+Plug 'tpope/vim-fugitive'           " Git与Vim整合插件
 call plug#end()                     " List ends here. Plugins become visible to Vim after this call.
 " 对于插件的调用和配置最好放在这之后，不然可能出现Bug
 
@@ -56,7 +59,7 @@ endif
 
 
 " ********** 交换文件与历史记录 **********
-set directory=~/.vim/swap// " 将交换文件集中放置，防止污染文件系统
+set directory=$HOME/.vim/swap//     " 将交换文件集中放置，防止污染文件系统
 set nobackup                    " set backup使每一次编辑文件都会保存上一次的备份文件；设置了撤销文件，就不需要保存文件备份了
 set undofile                    " 为所有文件设置持久性撤销              
 if !isdirectory($HOME."/.vim/undodir")
@@ -76,5 +79,10 @@ let g:airline#extensions#tabline#show_tab_nr = 0       " 不在tabline显示标�
 
 " ********** 目录插件NERDTree设置 **********
 let NERDTreeShowBookmarks = 1       " 启动NERDTree时显示书签
-" 当NERDTree窗口是最后一个窗口时自动关闭
+" 当NERDTree窗口是最后一个窗口时自动关闭；默认时NERDTree也是一个窗口需要手动关闭
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+            \b:NERDTree.isTabTree()) | q | endif
 
+
+" ********** 自动补全插件YouCompleteMe设置 **********
+"let g:plug_timeout = 300            "为YouCompleteMe增加vim-plug的超时时限
