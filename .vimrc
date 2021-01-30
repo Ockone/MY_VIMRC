@@ -95,7 +95,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
             \b:NERDTree.isTabTree()) | q | endif
 
 
-<<<<<<< HEAD
 " ********** 自动补全插件coc.nvim+clangd设置 **********
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -110,7 +109,3 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-=======
-" ********** 自动补全插件YouCompleteMe设置 **********
-"let g:plug_timeout = 300            "为YouCompleteMe增加vim-plug的超时时限
->>>>>>> 399869ed528c107699147e69c58c456876bc03cf
