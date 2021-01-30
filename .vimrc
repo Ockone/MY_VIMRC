@@ -41,13 +41,8 @@ Plug 'scrooloose/nerdtree'          " 提供类似于IDE的文件目录视图
 Plug 'tpope/vim-unimpaired'         " 将一些常用Vim命令映射为简单的快捷键
 Plug 'vim-airline/vim-airline'      " 花哨的状态栏工具
 Plug 'morhetz/gruvbox'              " 一款广受好评的配色方案
-<<<<<<< HEAD
 Plug 'tpope/vim-fugitive'           " Git与Vim整合插件
 Plug 'neoclide/coc.nvim',{'branch':'release'}   " 实现类似于VScode的插件管理
-=======
-" Plug 'Valloric/YouCompleteMe'自动补全插件YouCompleteMe不建议通过包管理器安装，错误频出；apt包管理器居然支持，Nice!
-Plug 'tpope/vim-fugitive'           " Git与Vim整合插件
->>>>>>> 399869ed528c107699147e69c58c456876bc03cf
 call plug#end()                     " List ends here. Plugins become visible to Vim after this call.
 " 对于插件的调用和配置最好放在这之后，不然可能出现Bug
 
@@ -64,12 +59,9 @@ endif
 
 
 " ********** 交换文件与历史记录 **********
-<<<<<<< HEAD
 if !isdirectory($HOME."/.vim/swap")
     call mkdir($HOME."/.vim/swap", 'p')
 endif
-=======
->>>>>>> 399869ed528c107699147e69c58c456876bc03cf
 set directory=$HOME/.vim/swap//     " 将交换文件集中放置，防止污染文件系统
 set nobackup                    " set backup使每一次编辑文件都会保存上一次的备份文件；设置了撤销文件，就不需要保存文件备份了
 set undofile                    " 为所有文件设置持久性撤销              
