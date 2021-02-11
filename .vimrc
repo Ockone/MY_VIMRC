@@ -7,6 +7,7 @@ set expandtab               " 将制表符Tab展开为空格，这对Python尤�
 set tabstop=4               " 输入Tab时转化为4空格；打开文件时Tab显示为4空格
 set backspace=2             " 在多数终端上修正退格键Backspace的行为
 set cursorline              " 高亮光标所在行
+set hidden
 
 set autoindent              " 开始新行时处理缩进
 set shiftwidth=4            " 用于自动缩进的空格数
@@ -88,9 +89,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 
 
 " ********** 自动补全插件coc.nvim+clangd设置 **********
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
+" 迁移vim后自动导入Coc插件
+let g:coc_global_extensions = [
+            \ 'coc-clangd',
+            \ 'coc-json',
+            \ 'coc-java']
+
+" 91-101行，设置Coc使用<Tab>健补全;否则,你按<Tab>它真的会输入一个'\t'
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -101,3 +106,4 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
