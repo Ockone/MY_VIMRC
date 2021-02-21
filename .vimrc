@@ -37,7 +37,7 @@ noremap <c-h> <c-w><c-h>
 noremap <c-j> <c-w><c-j>
 noremap <c-k> <c-w><c-k>
 noremap <c-l> <c-w><c-l>
-" 关闭缓冲区而不关闭窗口；这一段不理解(2021/1/23)
+" 可使用:Bd关闭缓冲区而不关闭窗口
 command! Bd :bp | :sp | :bn | :bd
 
 
@@ -61,6 +61,9 @@ Plug 'jiangmiao/auto-pairs'         " 括号、引号匹配工具
 Plug 'preservim/nerdcommenter'      " 注释插件
 Plug 'morhetz/gruvbox'              " 一款广受好评的配色方案
 Plug 'neoclide/coc.nvim',{'branch':'release'}   " 实现类似于VScode的插件管理
+Plug 'mileszs/ack.vim'              " 集成ack工具至Vim的插件
+Plug 'ctrlpvim/ctrlp.vim'           " 模糊补全插件，用于仅靠部分关键词打开所需文件
+Plug 'airblade/vim-gitgutter'       " Git侧边栏工具
 call plug#end()                     " List ends here. Plugins become visible to Vim after this call.
 " 对于插件的调用和配置最好放在这之后，不然可能出现Bug
 
@@ -86,11 +89,11 @@ let g:airline#extensions#tabline#show_tab_nr = 0       " 不在tabline显示标�
 
 
 " ********** 目录插件NERDTree设置 **********
-autocmd VimEnter * NERDTree         " Vim启动时打开NERDTree
+"autocmd VimEnter * NERDTree         " Vim启动时打开NERDTree
 let NERDTreeShowBookmarks = 1       " 启动NERDTree时显示书签
 " 当NERDTree窗口是最后一个窗口时自动关闭；默认时NERDTree也是一个窗口需要手动关闭
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
-            \b:NERDTree.isTabTree()) | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+            "\b:NERDTree.isTabTree()) | q | endif
 
 
 " ********** 自动补全插件coc.nvim+clangd设置 **********
